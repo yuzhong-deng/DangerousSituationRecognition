@@ -1,0 +1,3 @@
+include ':sdk-0.10.76'
+include ':app'
+rootProject.name = "Dangerous Situation Recognition"
