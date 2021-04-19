@@ -1,32 +1,47 @@
 package com.example.dangeroussituationrecognition
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.widget.EditText
-import android.widget.FrameLayout
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.util.Size
 import android.graphics.Matrix
+import android.os.Bundle
 import android.util.Log
 import android.util.Rational
+import android.util.Size
 import android.view.Surface
 import android.view.TextureView
+import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraX
 import androidx.camera.core.Preview
-
 import androidx.camera.core.PreviewConfig
-
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+
 import com.robotemi.sdk.Robot
-import com.robotemi.sdk.listeners.OnRobotLiftedListener
-import java.util.concurrent.TimeUnit
+import com.robotemi.sdk.exception.OnSdkExceptionListener
+import com.robotemi.sdk.face.OnFaceRecognizedListener
+import com.robotemi.sdk.listeners.*
+import com.robotemi.sdk.navigation.listener.OnCurrentPositionChangedListener
+import com.robotemi.sdk.navigation.listener.OnDistanceToLocationChangedListener
+import com.robotemi.sdk.permission.OnRequestPermissionResultListener
+import com.robotemi.sdk.sequence.OnSequencePlayStatusChangedListener
+
+import com.example.dangeroussituationrecognition.customview.OverlayView
+import com.example.dangeroussituationrecognition.customview.OverlayView.DrawCallback
+import com.example.dangeroussituationrecognition.env.BorderedText
+import com.example.dangeroussituationrecognition.env.ImageUtils
+import com.example.dangeroussituationrecognition.env.Logger
+import org.tensorflow.lite.examples.detection.tflite.Detector
+import org.tensorflow.lite.examples.detection.tflite.TFLiteObjectDetectionAPIModel
+import com.example.dangeroussituationrecognition.tracking.MultiBoxTracker
+
+
 // This is an arbitrary number using to keep tab of the permission
 private const val REQUEST_CODE_PERMISSIONS = 10
 // This is an array of all the permission specified in the manifest
@@ -35,15 +50,74 @@ private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 const val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
 
 
+
 class MainActivity : AppCompatActivity(){
-    
-    val TAG = "myTag";
-    
+
+//public abstract class MainActivity: AppCompatActivity(),
+//Robot.NlpListener,
+//OnRobotReadyListener,
+//Robot.ConversationViewAttachesListener,
+//Robot.WakeupWordListener,
+//Robot.ActivityStreamPublishListener,
+//Robot.TtsListener,
+//OnBeWithMeStatusChangedListener,
+//OnGoToLocationStatusChangedListener,
+//OnLocationsUpdatedListener,
+//OnConstraintBeWithStatusChangedListener,
+//OnDetectionStateChangedListener,
+//Robot.AsrListener,
+//OnTelepresenceEventChangedListener,
+//OnRequestPermissionResultListener,
+//OnDistanceToLocationChangedListener,
+//OnCurrentPositionChangedListener,
+//OnSequencePlayStatusChangedListener,
+//OnRobotLiftedListener,
+//OnDetectionDataChangedListener,
+//OnUserInteractionChangedListener,
+//OnFaceRecognizedListener,
+//OnSdkExceptionListener{
+
+    val TAG = "myTag"
+
+    private var robot: Robot? = null
+
+//    /**
+//     * Setting up all the event listeners
+//     */
+//    override fun onStart() {
+//        super.onStart()
+//        robot!!.addOnRobotReadyListener(this)
+//        robot!!.addNlpListener(this)
+//        robot!!.addOnGoToLocationStatusChangedListener(this)
+//        robot!!.addConversationViewAttachesListenerListener(this)
+//        robot!!.addWakeupWordListener(this)
+//        robot!!.addTtsListener(this)
+//        robot!!.addOnLocationsUpdatedListener(this)
+//        robot!!.addOnConstraintBeWithStatusChangedListener(this)
+//        robot!!.addOnDetectionStateChangedListener(this)
+//        robot!!.addAsrListener(this)
+//        robot!!.addOnDistanceToLocationChangedListener(this)
+//        robot!!.addOnCurrentPositionChangedListener(this)
+//        robot!!.addOnSequencePlayStatusChangedListener(this)
+//        robot!!.addOnRobotLiftedListener(this)
+//        robot!!.addOnDetectionDataChangedListener(this)
+//        robot!!.addOnUserInteractionChangedListener(this)
+//        robot!!.showTopBar()
+//    }
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        robot = Robot.getInstance() // get an instance of the robot in order to begin using its features.
+//        robot!!.addOnRequestPermissionResultListener(this)
+//        robot!!.addOnTelepresenceEventChangedListener(this)
+//        robot!!.addOnFaceRecognizedListener(this)
+//        robot!!.addOnSdkExceptionListener(this)
 
 
 
@@ -56,7 +130,8 @@ class MainActivity : AppCompatActivity(){
             Log.d(TAG, "onCreate: Start Camera")
         } else {
             ActivityCompat.requestPermissions(
-                    this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
         }
 
         // Every time the provided texture view changes, recompute layout
@@ -71,8 +146,23 @@ class MainActivity : AppCompatActivity(){
     }
 
 
+    /**
+     * tiltAngle controls temi's head by specifying which angle you want
+     * to tilt to and at which speed.
+     */
+    fun tiltAngle(view: View?) {
+        robot!!.tiltAngle(-15)
+    }
 
 
+
+
+
+
+
+
+    /**Camera
+     */
     private lateinit var viewFinder: TextureView
 
 
@@ -151,14 +241,17 @@ class MainActivity : AppCompatActivity(){
      * been granted? If yes, start Camera. Otherwise display a toast
      */
     override fun onRequestPermissionsResult(
-            requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
+    ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
                 viewFinder.post { startCamera() }
             } else {
-                Toast.makeText(this,
-                        "Permissions not granted by the user.",
-                        Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Permissions not granted by the user.",
+                    Toast.LENGTH_SHORT
+                ).show()
                 finish()
             }
         }
@@ -169,7 +262,8 @@ class MainActivity : AppCompatActivity(){
      */
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
-                baseContext, it) == PackageManager.PERMISSION_GRANTED
+            baseContext, it
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
 
