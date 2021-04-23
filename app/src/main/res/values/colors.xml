@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="tfe_semi_transparent">#66000000</color>
+    <color name="tfe_color_primary">#ED1B2F</color>
+    <color name="tfe_color_primary_dark">#ED1B2F</color>
+    <color name="tfe_color_accent">#425066</color>
 </resources>

@@ -50,7 +50,6 @@ private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 const val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
 
 
-
 class MainActivity : AppCompatActivity(){
 
 //public abstract class MainActivity: AppCompatActivity(),
@@ -121,9 +120,9 @@ class MainActivity : AppCompatActivity(){
 
 
 
-        // Preview
-        viewFinder = findViewById(R.id.view_finder)
-
+//        // Preview
+//        viewFinder = findViewById(R.id.view_finder)
+//
         // Request camera permissions
         if (allPermissionsGranted()) {
             viewFinder.post { startCamera() }
@@ -228,14 +227,6 @@ class MainActivity : AppCompatActivity(){
 
 
 
-
-
-
-
-
-
-
-
     /**
      * Process result from permission request dialog box, has the request
      * been granted? If yes, start Camera. Otherwise display a toast
@@ -276,15 +267,15 @@ class MainActivity : AppCompatActivity(){
 
 
 
-    /** Called when the user taps the Send button */
-    fun sendMessage(view: View) {
-        val editText = findViewById<EditText>(R.id.editText)
-        val message = editText.text.toString()
-        val intent = Intent(this, DisplayMessageActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, message)
-        }
-        startActivity(intent)
-    }
+//    /** Called when the user taps the Send button */
+//    fun sendMessage(view: View) {
+//        val editText = findViewById<EditText>(R.id.editText)
+//        val message = editText.text.toString()
+//        val intent = Intent(this, DisplayMessageActivity::class.java).apply {
+//            putExtra(EXTRA_MESSAGE, message)
+//        }
+//        startActivity(intent)
+//    }
 
 
     override fun onStop() {

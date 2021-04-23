@@ -1,9 +1,18 @@
 package com.example.dangeroussituationrecognition
 
+import android.graphics.Matrix
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Rational
+import android.util.Size
+import android.view.Surface
+import android.view.TextureView
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.camera.core.CameraX
+import androidx.camera.core.Preview
+import androidx.camera.core.PreviewConfig
 
 class DisplayMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,5 +34,22 @@ class DisplayMessageActivity : AppCompatActivity() {
 
 
 
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
+
 }
+
+
+
