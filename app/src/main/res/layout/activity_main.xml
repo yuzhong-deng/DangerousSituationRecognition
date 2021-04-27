@@ -46,6 +46,32 @@
                 android:onClick="tiltAngle"
                 android:text="@string/tilt"
                 />
+
+
+            <Button
+                android:id="@+id/btnCallOwner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1100dp"
+                android:layout_marginTop="300dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="405dp"
+                android:onClick="callOwner"
+                android:text="@string/call_owner"
+                />
+
+            <Button
+                android:id="@+id/btnPatrol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1100dp"
+                android:layout_marginTop="450dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="305dp"
+                android:onClick="patrol"
+                android:text="@string/patrol"
+                />
+
         </FrameLayout>
 
     </RelativeLayout>
