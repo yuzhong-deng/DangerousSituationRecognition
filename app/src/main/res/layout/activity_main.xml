@@ -13,8 +13,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
+<!--Yuzhong Deng Modified 2021/5/1-->
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,45 +34,77 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="org.tensorflow.demo.CameraActivity"
-            >
+            tools:context="org.tensorflow.demo.CameraActivity">
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1100dp"
-                android:layout_marginTop="150dp"
-                android:layout_marginEnd="27dp"
-                android:layout_marginBottom="595dp"
-                android:onClick="tiltAngle"
-                android:text="@string/tilt"
-                />
+                        <Button
+                            android:id="@+id/btnTiltAngle"
+                            android:layout_width="150dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="1100dp"
+                            android:layout_marginTop="150dp"
+                            android:layout_marginEnd="27dp"
+                            android:layout_marginBottom="595dp"
+                            android:onClick="tiltAngle"
+                            android:text="@string/tilt"
+                            android:textColor="@color/white"
+                            android:backgroundTint="@color/design_default_color_secondary"
+                            android:textSize="15dp"
+                            />
 
 
-            <Button
-                android:id="@+id/btnCallOwner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1100dp"
-                android:layout_marginTop="300dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="405dp"
-                android:onClick="callOwner"
-                android:text="@string/call_owner"
-                />
+            <!--            <Button-->
+            <!--                android:id="@+id/btnCallOwner"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="1100dp"-->
+            <!--                android:layout_marginTop="300dp"-->
+            <!--                android:layout_marginEnd="50dp"-->
+            <!--                android:layout_marginBottom="405dp"-->
+            <!--                android:onClick="callOwner"-->
+            <!--                android:text="@string/call_owner"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:backgroundTint="@color/design_default_color_secondary"-->
+            <!--                />-->
 
             <Button
                 android:id="@+id/btnPatrol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
                 android:layout_marginStart="1100dp"
-                android:layout_marginTop="450dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="305dp"
+                android:layout_marginTop="250dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="500dp"
+                android:backgroundTint="@color/design_default_color_secondary"
                 android:onClick="patrol"
                 android:text="@string/patrol"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+
                 />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="1136dp"
+                android:layout_marginTop="600dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="450dp"
+                android:text="@string/school"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="1090dp"
+                android:layout_marginTop="550dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="600dp"
+                android:src="@drawable/mcgill_sig_red_rev"
+                 />
 
         </FrameLayout>
 

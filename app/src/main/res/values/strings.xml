@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">Dangerous Recognition</string>
+    <string name="app_name">Danger Recognition</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
     <string name="textview">TextView</string>
-    <string name="tilt">Tilt Angle</string>
+    <string name="tilt">Set Camera</string>
     <string name="call_owner">Call Owner</string>
     <string name="patrol">Patrol</string>
+    <string name="school">School of Information Studies</string>
 
     <string name="tfe_od_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
 
