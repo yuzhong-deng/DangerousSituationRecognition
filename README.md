@@ -27,7 +27,7 @@ Danger Recognition is a fall detection Android application based on a TEMI robot
 6. Run it on the TEMI robot
 
 ## Customize Tensorflow Lite model
-Previous work [GLIS604_Dangerous Situation Recognition_ YOLOV4 colab notebook](https://colab.research.google.com/drive/1EOT2KiZ56NN3_VhuiwhFBJLDhrGoxC4X?usp=sharing) fot reference
+Previous work [GLIS604_Dangerous Situation Recognition_ YOLOV4 colab notebook](https://colab.research.google.com/drive/1EOT2KiZ56NN3_VhuiwhFBJLDhrGoxC4X?usp=sharing) for reference
 1. Label datasets 
 2. Generate darknet custom data
 3. Train the datasets by the YOLOv4 
