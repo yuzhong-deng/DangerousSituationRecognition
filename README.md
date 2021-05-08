@@ -27,10 +27,10 @@ Danger Recognition is a fall detection Android application based on a TEMI robot
 6. Run it on the TEMI robot
 
 ## Customize Tensorflow Lite model
-[colab notebook](https://colab.research.google.com/drive/1EOT2KiZ56NN3_VhuiwhFBJLDhrGoxC4X?usp=sharing)
+Previous work[colab notebook](https://colab.research.google.com/drive/1EOT2KiZ56NN3_VhuiwhFBJLDhrGoxC4X?usp=sharing)
 1. Label datasets 
 2. Generate darknet custom data
 3. Train the datasets by the YOLOv4 
 4. Convert the weights to TensorFlow .pb
 5. Convert the TensorFlow weights to TensorFlow Lite
-6. Application on Android (Requires modification in DetectorActivity file, A: [tensorflow lite standard weight](https://github.com/tensorflow/examples/tree/master/lite/examples/object_detection/android) B:[YOLOv4 tiny](https://github.com/hunglc007/tensorflow-yolov4-tflite))
+6. Application on Android (Requires modification in DetectorActivity file in this repo, * A:[YOLOv4](https://github.com/hunglc007/tensorflow-yolov4-tflite) * B: [standard tensorflow lite weight](https://github.com/tensorflow/examples/tree/master/lite/examples/object_detection/android) )
